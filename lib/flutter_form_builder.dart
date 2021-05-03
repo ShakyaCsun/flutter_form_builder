@@ -1,5 +1,7 @@
 library flutter_form_builder;
 
+export 'package:dropdown_search/dropdown_search.dart' hide ErrorBuilder;
+
 export './localization/form_builder_localizations.dart';
 export './src/fields/form_builder_checkbox.dart';
 export './src/fields/form_builder_checkbox_group.dart';
@@ -10,6 +12,7 @@ export './src/fields/form_builder_dropdown.dart';
 export './src/fields/form_builder_filter_chips.dart';
 export './src/fields/form_builder_radio_group.dart';
 export './src/fields/form_builder_range_slider.dart';
+export './src/fields/form_builder_searchable_dropdown.dart';
 export './src/fields/form_builder_segmented_control.dart';
 export './src/fields/form_builder_slider.dart';
 export './src/fields/form_builder_switch.dart';
