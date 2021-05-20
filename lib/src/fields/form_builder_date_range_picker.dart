@@ -25,7 +25,7 @@ class FormBuilderDateRangePicker extends FormBuilderField<DateTimeRange> {
   final MaxLengthEnforcement? maxLengthEnforcement;
   final int? maxLength;
   final VoidCallback? onEditingComplete;
-  final ValueChanged<List<DateTime>>? onFieldSubmitted;
+  final ValueChanged<DateTimeRange?>? onFieldSubmitted;
   final List<TextInputFormatter>? inputFormatters;
   final double cursorWidth;
   final Radius? cursorRadius;
@@ -68,8 +68,8 @@ class FormBuilderDateRangePicker extends FormBuilderField<DateTimeRange> {
     FormFieldValidator<DateTimeRange>? validator,
     DateTimeRange? initialValue,
     InputDecoration decoration = const InputDecoration(),
-    ValueChanged<DateTimeRange>? onChanged,
-    ValueTransformer<DateTimeRange>? valueTransformer,
+    ValueChanged<DateTimeRange?>? onChanged,
+    ValueTransformer<DateTimeRange?>? valueTransformer,
     bool enabled = true,
     FormFieldSetter<DateTimeRange>? onSaved,
     AutovalidateMode autovalidateMode = AutovalidateMode.disabled,

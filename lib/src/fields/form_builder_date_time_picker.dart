@@ -69,7 +69,7 @@ class FormBuilderDateTimePicker extends FormBuilderField<DateTime> {
 
   /// Called when an enclosing form is submitted. The value passed will be
   /// `null` if [format] fails to parse the text.
-  final ValueChanged<DateTime>? onFieldSubmitted;
+  final ValueChanged<DateTime?>? onFieldSubmitted;
   final TextEditingController? controller;
   final TextInputType keyboardType;
   final TextStyle? style;
@@ -135,8 +135,8 @@ class FormBuilderDateTimePicker extends FormBuilderField<DateTime> {
     FormFieldValidator<DateTime>? validator,
     DateTime? initialValue,
     InputDecoration decoration = const InputDecoration(),
-    ValueChanged<DateTime>? onChanged,
-    ValueTransformer<DateTime>? valueTransformer,
+    ValueChanged<DateTime?>? onChanged,
+    ValueTransformer<DateTime?>? valueTransformer,
     bool enabled = true,
     FormFieldSetter<DateTime>? onSaved,
     AutovalidateMode autovalidateMode = AutovalidateMode.disabled,
@@ -268,6 +268,7 @@ class _FormBuilderDateTimePickerState
 
   @override
   void dispose() {
+    effectiveFocusNode!.removeListener(_handleFocus);
     // Dispose the _textFieldController when initState created it
     if (null == widget.controller) {
       _textFieldController.dispose();
