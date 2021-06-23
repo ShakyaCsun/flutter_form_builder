@@ -57,6 +57,11 @@ class FormBuilderColoredChoiceChip<T> extends FormBuilderField<T> {
   /// Defaults to the shape in the ambient [ChipThemeData].
   final OutlinedBorder? shape;
 
+  /// The [ShapeBorder] to draw around selected chip.
+  ///
+  /// Defaults to the shape in the ambient [ChipThemeData].
+  final OutlinedBorder? selectedShape;
+
   /// Configures the minimum size of the tap target.
   ///
   /// Defaults to [ThemeData.materialTapTargetSize].
@@ -261,6 +266,7 @@ class FormBuilderColoredChoiceChip<T> extends FormBuilderField<T> {
     this.shadowColor,
     this.selectedShadowColor,
     this.shape,
+    this.selectedShape,
     this.elevation,
     this.pressElevation,
     this.materialTapTargetSize,
@@ -320,7 +326,8 @@ class FormBuilderColoredChoiceChip<T> extends FormBuilderField<T> {
                         backgroundColor: option.backgroundColor,
                         shadowColor: shadowColor,
                         selectedShadowColor: selectedShadowColor,
-                        // shape: shape,
+                        shape:
+                            field.value == option.value ? selectedShape : shape,
                         elevation: elevation,
                         pressElevation: pressElevation,
                         materialTapTargetSize: materialTapTargetSize,
