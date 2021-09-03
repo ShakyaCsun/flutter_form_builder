@@ -299,7 +299,7 @@ class FormBuilderColoredChoiceChip<T> extends FormBuilderField<T> {
               final state = field as _FormBuilderChoiceChipState<T>;
 
               return InputDecorator(
-                decoration: state.decoration(),
+                decoration: state.decoration,
                 child: Wrap(
                   direction: direction,
                   alignment: alignment,

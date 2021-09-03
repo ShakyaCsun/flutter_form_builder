@@ -208,7 +208,7 @@ class FormBuilderSearchableDropdown<T> extends FormBuilderField<T> {
               dropdownBuilder: dropdownBuilder,
               dropdownBuilderSupportsNullItem: dropdownBuilderSupportsNullItem,
               dropDownButton: dropDownButton,
-              dropdownSearchDecoration: state.decoration(),
+              dropdownSearchDecoration: state.decoration,
               emptyBuilder: emptyBuilder,
               errorBuilder: errorBuilder,
               filterFn: filterFn,
