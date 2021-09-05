@@ -3,13 +3,11 @@ import 'dart:ui';
 import 'package:dropdown_search/dropdown_search.dart' as dropdown_search;
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
 /// Field for selecting value(s) from a searchable list
 class FormBuilderSearchableDropdown<T> extends FormBuilderField<T> {
   /// final List<DropdownMenuItem<T>> items;
-
   ///DropDownSearch hint
   final String? hint;
 
@@ -23,7 +21,7 @@ class FormBuilderSearchableDropdown<T> extends FormBuilderField<T> {
   final bool showClearButton;
 
   ///offline items list
-  final List<T>? items;
+  final List<T> items;
 
   ///selected item
   final T? selectedItem;
@@ -107,7 +105,7 @@ class FormBuilderSearchableDropdown<T> extends FormBuilderField<T> {
   final Widget Function(BuildContext)? dropdownButtonBuilder;
   final Widget Function(BuildContext, T)? favoriteItemBuilder;
   final List<T> Function(List<T>)? favoriteItems;
-  final Future<bool?> Function(T?, T?)? onBeforeChange;
+  final Future<bool> Function(T?, T?)? onBeforeChange;
   final MainAxisAlignment favoriteItemsAlignment;
   final void Function()? onPopupDismissed;
   final TextEditingController? searchBoxController;
@@ -124,40 +122,40 @@ class FormBuilderSearchableDropdown<T> extends FormBuilderField<T> {
     T? initialValue,
     InputDecoration decoration = const InputDecoration(),
     ValueChanged<T?>? onChanged,
-    ValueTransformer<T>? valueTransformer,
+    ValueTransformer<T?>? valueTransformer,
     bool enabled = true,
     FormFieldSetter<T>? onSaved,
     AutovalidateMode autovalidateMode = AutovalidateMode.disabled,
     VoidCallback? onReset,
     FocusNode? focusNode,
+    required this.items,
+    this.autoValidate = false,
+    this.mode = dropdown_search.Mode.MENU,
     this.hint,
-    this.showSearchBox = true,
     this.isFilteredOnline = false,
-    this.showClearButton = false,
-    this.items,
+    this.popupTitle,
     this.selectedItem,
     this.onFind,
     this.dropdownBuilder,
     this.popupItemBuilder,
+    this.showSearchBox = true,
+    this.showClearButton = false,
     this.searchBoxDecoration,
     this.popupBackgroundColor,
-    this.popupTitle,
-    this.itemAsString,
+    this.maxHeight,
     this.filterFn,
-    this.mode = dropdown_search.Mode.MENU,
-    this.maxHeight = 300,
-    this.dialogMaxWidth,
+    this.itemAsString,
     this.showSelectedItem = false,
     this.compareFn,
     this.emptyBuilder,
     this.loadingBuilder,
     this.errorBuilder,
     this.autoFocusSearchBox = false,
-    this.popupShape,
-    this.autoValidate = false,
+    this.dialogMaxWidth,
     this.clearButton,
     this.dropDownButton,
     this.dropdownBuilderSupportsNullItem = false,
+    this.popupShape,
     this.popupItemDisabled,
     this.popupBarrierColor,
     this.label,
@@ -187,57 +185,66 @@ class FormBuilderSearchableDropdown<T> extends FormBuilderField<T> {
           focusNode: focusNode,
           builder: (FormFieldState<T?> field) {
             final state = field as _FormBuilderSearchableDropdownState<T>;
-            return dropdown_search.DropdownSearch<T>(
-              //Hack to rebuild when didChange is called
-              key: ValueKey(state.value),
-              items: items,
-              maxHeight: maxHeight,
-              onFind: onFind,
-              onChanged: (T? val) {
-                state.requestFocus();
-                state.didChange(val);
-              },
-              showSearchBox: showSearchBox,
-              hint: hint,
-              enabled: state.enabled,
-              autoFocusSearchBox: autoFocusSearchBox,
-              autoValidateMode: autovalidateMode,
-              clearButton: clearButton,
-              compareFn: compareFn,
-              dialogMaxWidth: dialogMaxWidth,
-              dropdownBuilder: dropdownBuilder,
-              dropdownBuilderSupportsNullItem: dropdownBuilderSupportsNullItem,
-              dropDownButton: dropDownButton,
-              dropdownSearchDecoration: state.decoration,
-              emptyBuilder: emptyBuilder,
-              errorBuilder: errorBuilder,
-              filterFn: filterFn,
-              isFilteredOnline: isFilteredOnline,
-              itemAsString: itemAsString,
-              loadingBuilder: loadingBuilder,
-              popupBackgroundColor: popupBackgroundColor,
-              mode: mode,
-              popupBarrierColor: popupBarrierColor,
-              popupItemBuilder: popupItemBuilder,
-              popupItemDisabled: popupItemDisabled,
-              popupShape: popupShape,
-              popupTitle: popupTitle,
-              searchBoxDecoration: searchBoxDecoration,
-              selectedItem: state.value,
-              showClearButton: showClearButton,
-              showSelectedItem: showSelectedItem,
-              label: label,
-              clearButtonBuilder: clearButtonBuilder,
-              dropdownButtonBuilder: dropdownButtonBuilder,
-              favoriteItemBuilder: favoriteItemBuilder,
-              favoriteItems: favoriteItems,
-              onBeforeChange: onBeforeChange,
-              favoriteItemsAlignment: favoriteItemsAlignment,
-              onPopupDismissed: onPopupDismissed,
-              searchBoxController: searchBoxController,
-              searchDelay: searchDelay,
-              showAsSuffixIcons: showAsSuffixIcons,
-              showFavoriteItems: showFavoriteItems,
+
+            return InputDecorator(
+              decoration: state.decoration,
+              child: dropdown_search.DropdownSearch<T>(
+                //Hack to rebuild when didChange is called
+                key: ValueKey(state.value),
+                items: items,
+                maxHeight: 300,
+                onFind: onFind,
+                onChanged: (val) {
+                  state.requestFocus();
+                  state.didChange(val);
+                },
+                showSearchBox: showSearchBox,
+                hint: hint,
+                enabled: state.enabled,
+                searchFieldProps: dropdown_search.TextFieldProps(
+                  autofocus: autoFocusSearchBox,
+                  decoration: searchBoxDecoration,
+                  controller: searchBoxController,
+                ),
+                autoValidateMode: autovalidateMode,
+                clearButton: clearButton,
+                compareFn: compareFn,
+                dialogMaxWidth: dialogMaxWidth,
+                dropdownBuilder: dropdownBuilder,
+                dropdownBuilderSupportsNullItem:
+                    dropdownBuilderSupportsNullItem,
+                dropDownButton: dropDownButton,
+                dropdownSearchDecoration: InputDecoration.collapsed(
+                  hintText: hint,
+                ),
+                emptyBuilder: emptyBuilder,
+                errorBuilder: errorBuilder,
+                filterFn: filterFn,
+                isFilteredOnline: isFilteredOnline,
+                itemAsString: itemAsString,
+                loadingBuilder: loadingBuilder,
+                popupBackgroundColor: popupBackgroundColor,
+                mode: mode,
+                popupBarrierColor: popupBarrierColor,
+                popupItemBuilder: popupItemBuilder,
+                popupItemDisabled: popupItemDisabled,
+                popupShape: popupShape,
+                popupTitle: popupTitle,
+                selectedItem: state.value,
+                showClearButton: showClearButton,
+                showSelectedItems: showSelectedItem,
+                label: label,
+                clearButtonBuilder: clearButtonBuilder,
+                dropdownButtonBuilder: dropdownButtonBuilder,
+                favoriteItemBuilder: favoriteItemBuilder,
+                favoriteItems: favoriteItems,
+                onBeforeChange: onBeforeChange,
+                favoriteItemsAlignment: favoriteItemsAlignment,
+                onPopupDismissed: onPopupDismissed,
+                searchDelay: searchDelay,
+                showAsSuffixIcons: showAsSuffixIcons,
+                showFavoriteItems: showFavoriteItems,
+              ),
             );
           },
         );
