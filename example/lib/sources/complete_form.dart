@@ -20,6 +20,32 @@ class CompleteFormState extends State<CompleteForm> {
 
   final ValueChanged _onChanged = (val) => print(val);
   var genderOptions = ['Male', 'Female', 'Other'];
+  final countriesList = [
+    'eum',
+    'ut',
+    'eos',
+    'impedit',
+    'molestiae',
+    'aut',
+    'sit',
+    'rerum',
+    'nesciunt',
+    'et',
+    'eos',
+    'cumque',
+    'quis',
+    'necessitatibus',
+    'pariatur',
+    'hic',
+    'et',
+    'dolorem',
+    'qui',
+    'culpa',
+    'aut',
+    'enim',
+    'molestias',
+    'dolorem',
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -42,6 +68,22 @@ class CompleteFormState extends State<CompleteForm> {
               child: Column(
                 children: <Widget>[
                   const SizedBox(height: 15),
+                  FormBuilderSearchableDropdown(
+                    name: 'country',
+                    autoFocusSearchBox: true,
+                    label: 'Country',
+                    validator: FormBuilderValidators.compose([
+                      FormBuilderValidators.required(context),
+                    ]),
+                    mode: Mode.DIALOG,
+                    dropDownButton: const Icon(Icons.cake_sharp),
+                    searchBoxDecoration: const InputDecoration(
+                      hintText: 'Search for your country',
+                    ),
+                    showAsSuffixIcons: true,
+                    hint: 'Select your country',
+                    items: countriesList,
+                  ),
                   FormBuilderDateTimePicker(
                     name: 'date',
                     initialValue: DateTime.now(),
