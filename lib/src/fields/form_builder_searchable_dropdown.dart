@@ -8,8 +8,6 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 /// Field for selecting value(s) from a searchable list
 class FormBuilderSearchableDropdown<T> extends FormBuilderField<T> {
   /// final List<DropdownMenuItem<T>> items;
-  ///DropDownSearch hint
-  final String? hint;
 
   ///show/hide the search box
   final bool showSearchBox;
@@ -100,7 +98,6 @@ class FormBuilderSearchableDropdown<T> extends FormBuilderField<T> {
   ///set a custom color for the popup barrier
   final Color? popupBarrierColor;
 
-  final String? label;
   final Widget Function(BuildContext)? clearButtonBuilder;
   final Widget Function(BuildContext)? dropdownButtonBuilder;
   final Widget Function(BuildContext, T)? favoriteItemBuilder;
@@ -131,7 +128,7 @@ class FormBuilderSearchableDropdown<T> extends FormBuilderField<T> {
     required this.items,
     this.autoValidate = false,
     this.mode = dropdown_search.Mode.MENU,
-    this.hint,
+    String? hint,
     this.isFilteredOnline = false,
     this.popupTitle,
     this.selectedItem,
@@ -158,7 +155,7 @@ class FormBuilderSearchableDropdown<T> extends FormBuilderField<T> {
     this.popupShape,
     this.popupItemDisabled,
     this.popupBarrierColor,
-    this.label,
+    String? label,
     this.clearButtonBuilder,
     this.dropdownButtonBuilder,
     this.favoriteItemBuilder,
@@ -181,7 +178,10 @@ class FormBuilderSearchableDropdown<T> extends FormBuilderField<T> {
           onSaved: onSaved,
           enabled: enabled,
           onReset: onReset,
-          decoration: decoration,
+          decoration: decoration.copyWith(
+            hintText: hint,
+            labelText: label,
+          ),
           focusNode: focusNode,
           builder: (FormFieldState<T?> field) {
             final state = field as _FormBuilderSearchableDropdownState<T>;
@@ -197,7 +197,6 @@ class FormBuilderSearchableDropdown<T> extends FormBuilderField<T> {
                 state.didChange(val);
               },
               showSearchBox: showSearchBox,
-              hint: hint,
               enabled: state.enabled,
               searchFieldProps: dropdown_search.TextFieldProps(
                 autofocus: autoFocusSearchBox,
@@ -228,7 +227,6 @@ class FormBuilderSearchableDropdown<T> extends FormBuilderField<T> {
               selectedItem: state.value,
               showClearButton: showClearButton,
               showSelectedItems: showSelectedItem,
-              label: label,
               clearButtonBuilder: clearButtonBuilder,
               dropdownButtonBuilder: dropdownButtonBuilder,
               favoriteItemBuilder: favoriteItemBuilder,
