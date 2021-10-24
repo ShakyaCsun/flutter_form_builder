@@ -58,6 +58,9 @@ class FormBuilder extends StatefulWidget {
   /// and their enabled state will be ignored.
   final bool enabled;
 
+  /// Whether the form should auto focus on the first field that fails validation.
+  final bool autoFocusOnValidationFailure;
+
   /// Creates a container for form fields.
   ///
   /// The [child] argument must not be null.
@@ -70,6 +73,7 @@ class FormBuilder extends StatefulWidget {
     this.initialValue = const <String, dynamic>{},
     this.skipDisabled = false,
     this.enabled = true,
+    this.autoFocusOnValidationFailure = false,
   }) : super(key: key);
 
   static FormBuilderState? of(BuildContext context) =>
@@ -111,7 +115,7 @@ class FormBuilderState extends State<FormBuilder> {
     // assistance to accidental duplicate names, we check and emit a warning.
     assert(() {
       if (_fields.containsKey(name)) {
-        print('Warning! Replacing duplicate Field for $name'
+        debugPrint('Warning! Replacing duplicate Field for $name'
             ' -- this is OK to ignore as long as the field was intentionally replaced');
       }
       return true;
@@ -131,7 +135,7 @@ class FormBuilderState extends State<FormBuilder> {
       assert(() {
         // This is OK to ignore when you are intentionally replacing a field
         // with another field using the same name.
-        print('Warning! Ignoring Field unregistration for $name'
+        debugPrint('Warning! Ignoring Field unregistration for $name'
             ' -- this is OK to ignore as long as the field was intentionally replaced');
         return true;
       }());
@@ -152,7 +156,7 @@ class FormBuilderState extends State<FormBuilder> {
 
   bool validate() {
     final hasError = !_formKey.currentState!.validate();
-    if (hasError) {
+    if (hasError && widget.autoFocusOnValidationFailure) {
       final wrongFields =
           fields.values.where((element) => element.hasError).toList();
       wrongFields.first.requestFocus();

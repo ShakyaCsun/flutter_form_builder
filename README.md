@@ -38,7 +38,7 @@ Widget build(BuildContext context) {
     children: <Widget>[
       FormBuilder(
         key: _formKey,
-        autovalidate: true,
+        autovalidateMode: AutovalidateMode.onUserInteraction,
         child: Column(
           children: <Widget>[
             FormBuilderFilterChip(
@@ -252,15 +252,15 @@ The currently supported fields include:
 
 In order to create an input field in the form, along with the label, and any applicable validation, there are several attributes that are supported by all types of inputs namely:
 
-| Attribute | Type  | Default | Required | Description |
-|-----------|-------|---------|-------------|----------|
-| `name` | `String` |  | `Yes` | This will form the key in the form value Map |
-| `initialValue` | `T` | `null`  | `No` | The initial value of the input field |
-| `enabled` | `bool` | `true` | `No` | Determines whether the field widget will accept user input. |
-| `decoration` | `InputDecoration` | `InputDecoration()` | `No` | Defines the border, labels, icons, and styles used to decorate the field. |
-| `validator` | `FormFieldValidator<T>` | `null` | `No` | A `FormFieldValidator` that will check the validity of value in the `FormField` |
-| `onChanged` | `ValueChanged<T>` | `null` | `No` | This event function will fire immediately the the field value changes |
-| `valueTransformer` | `ValueTransformer<T>` | `null` | `No` | Function that transforms field value before saving to form value. e.g. transform TextField value for numeric field from `String` to `num` |
+| Attribute          | Type                    | Default             | Required | Description                                                                                                                               |
+| ------------------ | ----------------------- | ------------------- | -------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
+| `name`             | `String`                |                     | `Yes`    | This will form the key in the form value Map                                                                                              |
+| `initialValue`     | `T`                     | `null`              | `No`     | The initial value of the input field                                                                                                      |
+| `enabled`          | `bool`                  | `true`              | `No`     | Determines whether the field widget will accept user input.                                                                               |
+| `decoration`       | `InputDecoration`       | `InputDecoration()` | `No`     | Defines the border, labels, icons, and styles used to decorate the field.                                                                 |
+| `validator`        | `FormFieldValidator<T>` | `null`              | `No`     | A `FormFieldValidator` that will check the validity of value in the `FormField`                                                           |
+| `onChanged`        | `ValueChanged<T>`       | `null`              | `No`     | This event function will fire immediately the the field value changes                                                                     |
+| `valueTransformer` | `ValueTransformer<T>`   | `null`              | `No`     | Function that transforms field value before saving to form value. e.g. transform TextField value for numeric field from `String` to `num` |
 The rest of the attributes will be determined by the type of Widget being used.
 
 ### Additional input fields
