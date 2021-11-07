@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:flutter_typeahead/flutter_typeahead.dart';
+
+import '../widgets/flutter_typeahead.dart';
 
 typedef SelectionToTextTransformer<T> = String Function(T suggestion);
 
@@ -324,6 +325,10 @@ class FormBuilderTypeAhead<T> extends FormBuilderField<T> {
               textFieldConfiguration: textFieldConfiguration.copyWith(
                 enabled: state.enabled,
                 controller: state._typeAheadController,
+                onChanged: (value) {
+                  state.didChange(value as T);
+                  textFieldConfiguration.onChanged?.call(value);
+                },
                 style: state.enabled
                     ? textFieldConfiguration.style
                     : theme.textTheme.subtitle1!.copyWith(
