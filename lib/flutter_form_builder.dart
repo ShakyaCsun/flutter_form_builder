@@ -18,6 +18,7 @@ export './src/fields/form_builder_segmented_control.dart';
 export './src/fields/form_builder_slider.dart';
 export './src/fields/form_builder_switch.dart';
 export './src/fields/form_builder_text_field.dart';
+export './src/fields/form_builder_type_ahead.dart';
 export './src/form_builder.dart';
 export './src/form_builder_field.dart';
 export './src/form_builder_field_option.dart';
