@@ -213,7 +213,6 @@ class GroupedCheckbox<T> extends StatelessWidget {
     Widget finalWidget;
     if (orientation == OptionsOrientation.vertical) {
       finalWidget = SingleChildScrollView(
-        scrollDirection: Axis.vertical,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: widgetList,
@@ -237,7 +236,6 @@ class GroupedCheckbox<T> extends StatelessWidget {
           crossAxisAlignment: wrapCrossAxisAlignment,
           verticalDirection: wrapVerticalDirection,
           alignment: wrapAlignment,
-          direction: Axis.horizontal,
           runAlignment: wrapRunAlignment,
           children: widgetList,
         ),
@@ -263,7 +261,8 @@ class GroupedCheckbox<T> extends StatelessWidget {
       onChanged: isOptionDisabled
           ? null
           : (selected) {
-              List<T> selectedListItems = value == null ? [] : List.of(value!);
+              final List<T> selectedListItems =
+                  value == null ? [] : List.of(value!);
               selected!
                   ? selectedListItems.add(optionValue)
                   : selectedListItems.remove(optionValue);
@@ -274,7 +273,8 @@ class GroupedCheckbox<T> extends StatelessWidget {
       onTap: isOptionDisabled
           ? null
           : () {
-              List<T> selectedListItems = value == null ? [] : List.of(value!);
+              final List<T> selectedListItems =
+                  value == null ? [] : List.of(value!);
               selectedListItems.contains(optionValue)
                   ? selectedListItems.remove(optionValue)
                   : selectedListItems.add(optionValue);
@@ -287,7 +287,7 @@ class GroupedCheckbox<T> extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
         if (controlAffinity == ControlAffinity.leading) control,
-        Flexible(flex: 1, child: label),
+        Flexible(child: label),
         if (controlAffinity == ControlAffinity.trailing) control,
         if (separator != null && index != options.length - 1) separator!,
       ],

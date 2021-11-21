@@ -296,7 +296,9 @@ class _FormBuilderDateTimePickerState
   }
 
   Future<DateTime?> onShowPicker(
-      BuildContext context, DateTime? currentValue) async {
+    BuildContext context,
+    DateTime? currentValue,
+  ) async {
     currentValue = value;
     DateTime? newValue;
     switch (widget.inputType) {
@@ -323,7 +325,9 @@ class _FormBuilderDateTimePickerState
   }
 
   Future<DateTime?> _showDatePicker(
-      BuildContext context, DateTime? currentValue) {
+    BuildContext context,
+    DateTime? currentValue,
+  ) {
     return showDatePicker(
       context: context,
       selectableDayPredicate: widget.selectableDayPredicate,
@@ -349,7 +353,9 @@ class _FormBuilderDateTimePickerState
   }
 
   Future<TimeOfDay?> _showTimePicker(
-      BuildContext context, DateTime? currentValue) async {
+    BuildContext context,
+    DateTime? currentValue,
+  ) async {
     final timePickerResult = await showTimePicker(
       context: context,
       initialTime: currentValue != null
@@ -369,7 +375,12 @@ class _FormBuilderDateTimePickerState
 
   /// Sets the hour and minute of a [DateTime] from a [TimeOfDay].
   DateTime combine(DateTime date, TimeOfDay? time) => DateTime(
-      date.year, date.month, date.day, time?.hour ?? 0, time?.minute ?? 0);
+        date.year,
+        date.month,
+        date.day,
+        time?.hour ?? 0,
+        time?.minute ?? 0,
+      );
 
   DateTime? convert(TimeOfDay? time) =>
       time == null ? null : DateTime(1, 1, 1, time.hour, time.minute);

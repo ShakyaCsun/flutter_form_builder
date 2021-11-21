@@ -270,7 +270,8 @@ class FormBuilderDropdown<T> extends FormBuilderField<T> {
                         disabledHint: field.value != null
                             ? (items
                                     .firstWhereOrNull(
-                                        (val) => val.value == field.value)
+                                      (val) => val.value == field.value,
+                                    )
                                     ?.child ??
                                 Text(field.value.toString()))
                             : disabledHint,

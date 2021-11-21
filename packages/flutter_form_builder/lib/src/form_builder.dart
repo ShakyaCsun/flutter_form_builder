@@ -113,13 +113,17 @@ class FormBuilderState extends State<FormBuilder> {
     // field is being replaced, the new instance is registered before the old
     // one is unregistered.  To accommodate that use case, but also provide
     // assistance to accidental duplicate names, we check and emit a warning.
-    assert(() {
-      if (_fields.containsKey(name)) {
-        debugPrint('Warning! Replacing duplicate Field for $name'
-            ' -- this is OK to ignore as long as the field was intentionally replaced');
-      }
-      return true;
-    }());
+    assert(
+      () {
+        if (_fields.containsKey(name)) {
+          debugPrint(
+            'Warning! Replacing duplicate Field for $name'
+            ' -- this is OK to ignore as long as the field was intentionally replaced',
+          );
+        }
+        return true;
+      }(),
+    );
     _fields[name] = field;
   }
 
@@ -132,13 +136,17 @@ class FormBuilderState extends State<FormBuilder> {
     if (field == _fields[name]) {
       _fields.remove(name);
     } else {
-      assert(() {
-        // This is OK to ignore when you are intentionally replacing a field
-        // with another field using the same name.
-        debugPrint('Warning! Ignoring Field unregistration for $name'
-            ' -- this is OK to ignore as long as the field was intentionally replaced');
-        return true;
-      }());
+      assert(
+        () {
+          // This is OK to ignore when you are intentionally replacing a field
+          // with another field using the same name.
+          debugPrint(
+            'Warning! Ignoring Field unregistration for $name'
+            ' -- this is OK to ignore as long as the field was intentionally replaced',
+          );
+          return true;
+        }(),
+      );
     }
     // Removes internal field value
     _value.remove(name);

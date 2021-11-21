@@ -208,7 +208,6 @@ class _GroupedRadioState<T> extends State<GroupedRadio<T?>> {
     Widget finalWidget;
     if (widget.orientation == OptionsOrientation.vertical) {
       finalWidget = SingleChildScrollView(
-        scrollDirection: Axis.vertical,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: widgetList,
@@ -232,7 +231,6 @@ class _GroupedRadioState<T> extends State<GroupedRadio<T?>> {
           crossAxisAlignment: widget.wrapCrossAxisAlignment,
           verticalDirection: widget.wrapVerticalDirection,
           alignment: widget.wrapAlignment,
-          direction: Axis.horizontal,
           runAlignment: widget.wrapRunAlignment,
           children: widgetList,
         ),

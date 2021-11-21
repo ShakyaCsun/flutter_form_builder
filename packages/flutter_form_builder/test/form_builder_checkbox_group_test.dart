@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:flutter_test/flutter_test.dart';
 
 import 'form_builder_tester.dart';
 
@@ -48,17 +48,17 @@ void main() {
     expect(formSave(), isTrue);
     expect(formValue(fieldName), [1, 3]);
 
-    Checkbox checkbox1 = tester
+    final Checkbox checkbox1 = tester
         .element(find.byKey(const ValueKey('1')))
         .findAncestorWidgetOfExactType<Row>()!
         .children
         .first as Checkbox;
-    Checkbox checkbox2 = tester
+    final Checkbox checkbox2 = tester
         .element(find.byKey(const ValueKey('2')))
         .findAncestorWidgetOfExactType<Row>()!
         .children
         .first as Checkbox;
-    Checkbox checkbox3 = tester
+    final Checkbox checkbox3 = tester
         .element(find.byKey(const ValueKey('3')))
         .findAncestorWidgetOfExactType<Row>()!
         .children

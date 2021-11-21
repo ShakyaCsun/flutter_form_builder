@@ -126,7 +126,6 @@ class FormBuilderSwitch extends FormBuilderField<bool> {
               decoration: state.decoration,
               child: SwitchListTile(
                 dense: true,
-                isThreeLine: false,
                 contentPadding: contentPadding,
                 title: title,
                 value: state.value ?? false,

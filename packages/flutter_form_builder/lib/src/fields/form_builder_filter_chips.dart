@@ -5,7 +5,8 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 class FormBuilderFilterChip<T> extends FormBuilderField<List<T>> {
   //TODO: Add documentation
   final List<FormBuilderFieldOption<T>> options;
-  final double? elevation, pressElevation;
+  final double? elevation;
+  final double? pressElevation;
   final Color? selectedColor;
   final Color? disabledColor;
   final Color? backgroundColor;
@@ -19,7 +20,8 @@ class FormBuilderFilterChip<T> extends FormBuilderField<List<T>> {
   final WrapAlignment alignment;
   final WrapCrossAlignment crossAxisAlignment;
   final WrapAlignment runAlignment;
-  final double runSpacing, spacing;
+  final double runSpacing;
+  final double spacing;
   final TextDirection? textDirection;
   final VerticalDirection verticalDirection;
   final EdgeInsets? padding;

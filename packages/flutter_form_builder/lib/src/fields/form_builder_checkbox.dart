@@ -114,7 +114,6 @@ class FormBuilderCheckbox extends FormBuilderField<bool> {
               decoration: state.decoration,
               child: CheckboxListTile(
                 dense: true,
-                isThreeLine: false,
                 title: title,
                 subtitle: subtitle,
                 value: state.value ?? false,

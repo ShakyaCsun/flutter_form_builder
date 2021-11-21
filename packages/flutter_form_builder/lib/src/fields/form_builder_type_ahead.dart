@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
 import '../widgets/flutter_typeahead.dart';
@@ -404,7 +403,7 @@ class _FormBuilderTypeAheadState<T>
   @override
   void didChange(T? value) {
     super.didChange(value);
-    var text = _getTextString(value);
+    final text = _getTextString(value);
 
     if (_typeAheadController.text != text) {
       _typeAheadController.text = text;
@@ -426,7 +425,7 @@ class _FormBuilderTypeAheadState<T>
   }
 
   String _getTextString(T? value) {
-    var text = value == null
+    final text = value == null
         ? ''
         : widget.selectionToTextTransformer != null
             ? widget.selectionToTextTransformer!(value)

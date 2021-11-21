@@ -343,14 +343,16 @@ class FormBuilderTextField extends FormBuilderField<String> {
         assert(maxLines == null || maxLines > 0),
         assert(
           (minLines == null) || (maxLines == null) || (maxLines >= minLines),
-          'minLines can\'t be greater than maxLines',
+          "minLines can't be greater than maxLines",
         ),
         assert(
           !expands || (minLines == null && maxLines == null),
           'minLines and maxLines must be null when expands is true.',
         ),
-        assert(!obscureText || maxLines == 1,
-            'Obscured fields cannot be multiline.'),
+        assert(
+          !obscureText || maxLines == 1,
+          'Obscured fields cannot be multiline.',
+        ),
         assert(maxLength == null || maxLength > 0),
         super(
           key: key,
