@@ -14,7 +14,7 @@ void main() {
     final textEditingController = TextEditingController();
     final testWidgetKey = GlobalKey<FormBuilderFieldState>();
 
-    final testWidget = FormBuilderTypeAhead<String>(
+    final testWidget = FormBuilderExtraTypeAhead<String>(
       key: testWidgetKey,
       name: textFieldName,
       initialValue: initialTextValue,

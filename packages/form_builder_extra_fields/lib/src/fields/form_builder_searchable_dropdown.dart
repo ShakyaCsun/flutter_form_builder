@@ -1,10 +1,9 @@
-import 'package:dropdown_search/dropdown_search.dart' as dropdown_search;
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
 /// Field for selecting value(s) from a searchable list
-class FormBuilderSearchableDropdown<T> extends FormBuilderField<T> {
+class FormBuilderExtraSearchableDropdown<T> extends FormBuilderField<T> {
   ///show/hide the search box
   final bool showSearchBox;
 
@@ -189,7 +188,7 @@ class FormBuilderSearchableDropdown<T> extends FormBuilderField<T> {
   final PositionCallback? positionCallback;
 
   /// Creates field for selecting value(s) from a searchable list
-  FormBuilderSearchableDropdown({
+  FormBuilderExtraSearchableDropdown({
     Key? key,
     //From Super
     required String name,
@@ -204,7 +203,7 @@ class FormBuilderSearchableDropdown<T> extends FormBuilderField<T> {
     VoidCallback? onReset,
     FocusNode? focusNode,
     required this.items,
-    this.mode = dropdown_search.Mode.MENU,
+    this.mode = Mode.MENU,
     this.isFilteredOnline = false,
     this.popupTitle,
     this.selectedItem,
@@ -279,7 +278,7 @@ class FormBuilderSearchableDropdown<T> extends FormBuilderField<T> {
           builder: (FormFieldState<T?> field) {
             final state = field as _FormBuilderSearchableDropdownState<T>;
 
-            return dropdown_search.DropdownSearch<T>(
+            return DropdownSearch<T>(
               key: ValueKey(state.value),
               // Hack to rebuild when didChange is called
               items: items,
@@ -348,4 +347,4 @@ class FormBuilderSearchableDropdown<T> extends FormBuilderField<T> {
 }
 
 class _FormBuilderSearchableDropdownState<T>
-    extends FormBuilderFieldState<FormBuilderSearchableDropdown<T>, T> {}
+    extends FormBuilderFieldState<FormBuilderExtraSearchableDropdown<T>, T> {}

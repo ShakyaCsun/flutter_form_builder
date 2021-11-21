@@ -28,7 +28,7 @@ class _MyHomePageState extends State<MyHomePage> {
             autovalidateMode: AutovalidateMode.onUserInteraction,
             child: Column(
               children: [
-                FormBuilderSearchableDropdown(
+                FormBuilderExtraSearchableDropdown(
                   name: 'searchable_dropdown',
                   items: allCountries,
                   onChanged: _onChanged,
@@ -118,7 +118,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                   locale: const Locale.fromSubtags(languageCode: 'en_GB'),
                 ),
-                FormBuilderTypeAhead<String>(
+                FormBuilderExtraTypeAhead<String>(
                   decoration: const InputDecoration(
                       labelText: 'TypeAhead (Autocomplete TextField)',
                       hintText: 'Start typing country name'),
