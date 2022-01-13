@@ -190,7 +190,7 @@ class FormBuilderSearchableDropdown<T> extends FormBuilderField<T> {
               //Hack to rebuild when didChange is called
               key: ValueKey(state.value),
               items: items,
-              maxHeight: 300,
+              maxHeight: maxHeight,
               onFind: onFind,
               onChanged: (val) {
                 state.requestFocus();

@@ -282,7 +282,7 @@ class FormBuilderExtraSearchableDropdown<T> extends FormBuilderField<T> {
               key: ValueKey(state.value),
               // Hack to rebuild when didChange is called
               items: items,
-              maxHeight: 300,
+              maxHeight: maxHeight,
               onFind: onFind,
               onChanged: (val) {
                 state.requestFocus();
