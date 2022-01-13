@@ -229,7 +229,6 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 
 typedef SuggestionsCallback<T> = FutureOr<Iterable<T>> Function(String pattern);

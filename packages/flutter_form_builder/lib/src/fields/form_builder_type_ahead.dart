@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
-
-import '../widgets/flutter_typeahead.dart';
+import 'package:flutter_form_builder/src/widgets/flutter_typeahead.dart';
 
 typedef SelectionToTextTransformer<T> = String Function(T suggestion);
 
